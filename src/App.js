@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import LeftSection from "./components/leftSection";
+import NavBar from "./components/NavBar";
+import styledComponents from "styled-components";
+
+const HomeSection = styledComponents.div`
+
+  max-width:2400px;
+margin:auto;
+  `;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar />
+      <HomeSection>
+        <LeftSection />
+      </HomeSection>
     </div>
   );
 }
