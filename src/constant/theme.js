@@ -116,7 +116,6 @@ class TextTheme {
     fontWeight: "400",
     lineHeight: "17px",
     letterSpacing: "0em",
-    textAlign: "left",
   };
 
   static caption = {

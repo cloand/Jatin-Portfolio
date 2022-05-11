@@ -1,58 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BioOuter,
   LeftSectionStyle,
   LinksStyle,
   Salutation,
-  SingleLink,
   NameStyle,
   DesignationStyle,
   BioText,
   ButtonStyle,
   ButtonInner,
   LeftSectionData,
+  RightSectionStyle,
+  ButtonOuter,
 } from "./leftSectionStyle";
-import { ReactComponent as Instagram } from "../assets/instagram.svg";
-import { ReactComponent as GitHub } from "../assets/github.svg";
-import { ReactComponent as Linkedin } from "../assets/linkedin.svg";
-import { ReactComponent as Twitter } from "../assets/twitter.svg";
-import { Button, textOnlyButton } from "./Button";
 
-const LeftSection = (props) => {
+import { Button, textOnlyButton } from "./Button";
+import Rive from "rive-react";
+import IconDisplay from "./fontAwesomeDisplay";
+import Duck from "../assets/duck.riv";
+
+const LeftSection = ({ post }) => {
   return (
     <LeftSectionStyle>
       <LeftSectionData>
         <BioOuter>
           <LinksStyle>
-            <SingleLink>
-              <Instagram />
-            </SingleLink>
-            <SingleLink>
-              <Twitter />
-            </SingleLink>
-            <SingleLink>
-              <GitHub />
-            </SingleLink>
-            <SingleLink>
-              <Linkedin />
-            </SingleLink>
+            {post.socials.map((x) => (
+              <IconDisplay x={x} />
+            ))}
           </LinksStyle>
 
           <BioText>
             <Salutation>Hi, I'm</Salutation>
-            <NameStyle>Jatin</NameStyle>
-            <DesignationStyle>FLUTTER DEVELOPER</DesignationStyle>
+            <NameStyle>{post.name}</NameStyle>
+            <DesignationStyle>{post.designation}</DesignationStyle>
           </BioText>
         </BioOuter>
         <ButtonStyle>
-          <ButtonInner>
-            <Button>Hire Me</Button>
-          </ButtonInner>
-          <ButtonInner>
-            <Button buttonType={textOnlyButton}>See my Work</Button>
-          </ButtonInner>
+          <ButtonOuter>
+            <ButtonInner style={{ width: "46%" }}>
+              <Button>Hire Me</Button>
+            </ButtonInner>
+            <ButtonInner style={{ width: "46%" }}>
+              <Button buttonType={textOnlyButton}>Explore</Button>
+            </ButtonInner>
+          </ButtonOuter>
         </ButtonStyle>
       </LeftSectionData>
+      <RightSectionStyle>
+        <Rive src={Duck} useOffscreenRenderer={false} />
+      </RightSectionStyle>
     </LeftSectionStyle>
   );
 };

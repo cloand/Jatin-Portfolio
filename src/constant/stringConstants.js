@@ -3,12 +3,20 @@ const Strings = {
   home: "Home",
   contact: "Contact",
   about: "About",
+  experience: "Experience",
   projects: "Projects",
 };
 
 const Api = {
-  baseUrl: "jatin5120-portfolio.herokuapp.com/",
+  baseUrl: "https://jatin5120-portfolio.herokuapp.com/",
   projectRoute: "project/",
 };
 
-export default Strings;
+const navHeadings = [
+  Strings.home,
+  Strings.about,
+  Strings.projects,
+  Strings.experience,
+  Strings.contact,
+];
+export { Strings, Api, navHeadings };

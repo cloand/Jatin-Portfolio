@@ -13,7 +13,7 @@ const NavStyle = styledComponents.div`
   display:flex;
   align-items:center;
   justify-content:space-between;
-  max-width:2400px;
+  max-width:2100px;
   margin:auto;
   
   `;
