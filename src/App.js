@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import LeftSection from "./components/leftSection";
 import NavBar from "./components/NavBar";
 import styledComponents from "styled-components";
@@ -23,15 +23,24 @@ const App = () => {
   const [post, setPost] = useState({});
   const [check, setCheck] = useState(false);
 
+  const homeRef = useRef(null);
+  const aboutRef = useRef();
+  const projectRef = useRef();
+  const contactRef = useRef();
+  const allRef = useRef({homeRef,aboutRef,projectRef,contactRef});
+
+  
   const getApi = async () => {
     const res = await fetch(Api.baseUrl);
     setPost(await res.json());
     setCheck(true);
   };
 
+
   useEffect(() => {
     getApi();
-  }, []);
+    console.log(homeRef.current.offsetHeight);
+  },[homeRef]);
 
   if (!check) {
     return (
@@ -43,7 +52,7 @@ const App = () => {
     );
   }
   return (
-    <div>
+    <div ref = {homeRef}>
       <NavBar />
       <HomeSection>
         <LeftSection post={post} />

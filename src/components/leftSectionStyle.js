@@ -14,7 +14,7 @@ const linkAnimation = keyframes`
 `;
 
 const LeftSectionStyle = styledComponents.div`
-    max-width:1790px;
+    max-width:1400px;
     padding:4em 0 0 0;
    display:flex;
    margin:auto;
@@ -108,25 +108,25 @@ const BioText = styledComponents.div`
 `;
 
 const ButtonStyle = styledComponents.div`
-    display:flex;
+    
     padding:7em 0;
    
-  width:80%;
+  width:100%;
    
 `;
 
 const ButtonOuter = styledComponents.div`
 
         display:flex;
-        justify-content:space-between;
-       padding:0;
        width:100%;
+       padding:0;
+      
 `;
 
 const ButtonInner = styledComponents.div`
      text-align:center;
+
    
-    padding:0;
 `;
 
 export {

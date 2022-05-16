@@ -7,6 +7,8 @@ const ButtonStyle = styledComponents.button`
   text-decoration: none;
   z-index: 1;
   border-radius:10px;
+  width:60%;
+  min-height:3em;
   &:hover {
     cursor: pointer;
    
@@ -44,7 +46,7 @@ function Button({ children: label, buttonType = ButtonType.primary }) {
       style={{
         border: 0,
         ...TextTheme.button,
-        ...TextTheme.heading4,
+        
         ..._buttonType,
         textAlign: "center",
       }}
@@ -57,15 +59,15 @@ function Button({ children: label, buttonType = ButtonType.primary }) {
 const primaryButton = {
   background: AppColors.primary500,
   color: AppColors.white,
-  padding: ".5em 2em",
-  borderRadius: "10px",
+
+  
 };
 
 const textOnlyButton = {
   background: AppColors.background500,
   color: AppColors.primary500,
-  padding: ".5em 2em",
-  borderRadius: "10px",
+ 
+  
 };
 
 export { Button, textOnlyButton };
