@@ -15,7 +15,7 @@ const ButtonStyle = styledComponents.button`
   }
   &::before{
     content: "";
-    position: absolute;
+    position: absolute;z
     top: 0;
     left:0;
     right: 0;
@@ -46,7 +46,7 @@ function Button({ children: label, buttonType = ButtonType.primary }) {
       style={{
         border: 0,
         ...TextTheme.button,
-        
+
         ..._buttonType,
         textAlign: "center",
       }}
@@ -59,15 +59,11 @@ function Button({ children: label, buttonType = ButtonType.primary }) {
 const primaryButton = {
   background: AppColors.primary500,
   color: AppColors.white,
-
-  
 };
 
 const textOnlyButton = {
   background: AppColors.background500,
   color: AppColors.primary500,
- 
-  
 };
 
 export { Button, textOnlyButton };

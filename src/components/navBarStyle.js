@@ -9,17 +9,19 @@ import {
 const { fontFamily, fontSize } = TextTheme.subtitle1;
 
 const NavStyle = styledComponents.div`  
-
+position:sticky;
+top:0;
   display:flex;
   align-items:center;
   justify-content:space-between;
   max-width:1700px;
   margin:auto;
+  background:${AppColors.background500};
   
   `;
 
 const NavLinkStyle = styledComponents.ul`
-  display:flex;
+
   color:${AppColors.white};
   list-style-type:none;
   
@@ -83,7 +85,19 @@ height: 25%;
 
 const NavAnchor = styledComponents.a`
     text-decoration:none;
+    cursor:pointer;
    
 `;
 
-export { NavStyle, NavLinkStyle, NavLinkList, LogoStyle, NavAnchor };
+const NavListOutline = styledComponents.ul`
+    display:flex;
+`;
+
+export {
+  NavListOutline,
+  NavStyle,
+  NavLinkStyle,
+  NavLinkList,
+  LogoStyle,
+  NavAnchor,
+};

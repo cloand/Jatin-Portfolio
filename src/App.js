@@ -11,6 +11,8 @@ import { Api } from "./constant/constant";
 import Loading from "./assets/loading.riv";
 import Rive from "rive-react";
 
+export const myContext = React.createContext();
+
 library.add(fab, faCheckSquare, faCoffee);
 
 const HomeSection = styledComponents.div`
@@ -22,25 +24,37 @@ margin:auto;
 const App = () => {
   const [post, setPost] = useState({});
   const [check, setCheck] = useState(false);
+  const [clickChange, setClickChange] = useState(true);
 
   const homeRef = useRef(null);
-  const aboutRef = useRef();
-  const projectRef = useRef();
-  const contactRef = useRef();
-  const allRef = useRef({homeRef,aboutRef,projectRef,contactRef});
+  const aboutRef = useRef(null);
+  const projectRef = useRef(null);
+  const experienceRef = useRef(null);
+  const contactRef = useRef(null);
 
-  
   const getApi = async () => {
     const res = await fetch(Api.baseUrl);
     setPost(await res.json());
     setCheck(true);
   };
 
-
   useEffect(() => {
     getApi();
-    console.log(homeRef.current.offsetHeight);
-  },[homeRef]);
+  }, [clickChange]);
+
+  const scrollToComp = (ref) => {
+    if (ref != null) {
+      ref.scrollIntoView({
+        behavior: "smooth",
+      });
+
+      console.log("njkk");
+    }
+  };
+
+  const changingMethod = () => {
+    setClickChange((prevClickChange) => !prevClickChange);
+  };
 
   if (!check) {
     return (
@@ -51,24 +65,42 @@ const App = () => {
       />
     );
   }
+
   return (
-    <div ref = {homeRef}>
-      <NavBar />
-      <HomeSection>
-        <LeftSection post={post} />
-      </HomeSection>
-      <AboutComp>
-        <LeftSection />
-      </AboutComp>
-      {post.projects.map((i) => (
-        <ProjectsCard
-          key={i.id}
-          name={i.name}
-          tags={["Flutter", "Ui/Ux", "Firebase", "API"]}
+    <>
+      <myContext.Provider value={{ clickChange }}>
+        <NavBar
+          ref={{ homeRef, aboutRef, projectRef, experienceRef, contactRef }}
+          method={scrollToComp}
+          change={changingMethod}
         />
-      ))}
-    </div>
+      </myContext.Provider>
+      <div ref={homeRef}>
+        <HomeSection>
+          <LeftSection post={post} />
+        </HomeSection>
+      </div>
+      <div className="hello" ref={aboutRef}>
+        <AboutComp>
+          <LeftSection />
+        </AboutComp>
+      </div>
+      <div style={projectStyle} ref={projectRef}>
+        {post.projects.map((i) => (
+          <ProjectsCard
+            key={i.id}
+            name={i.name}
+            tags={["Flutter", "Ui/Ux", "Firebase", "API"]}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 // };
 export default App;
+
+const projectStyle = {
+  maxWidth: "1750px",
+  margin: "auto",
+};
