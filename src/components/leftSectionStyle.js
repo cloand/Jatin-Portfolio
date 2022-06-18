@@ -35,15 +35,22 @@ const LinksStyle = styledComponents.div`
     display:flex;
     flex-direction:column;
     padding-right:1.5em;
+    justify-content:space-between;
 `;
 
 const SingleLink = styledComponents.div`
-    padding:.55em;
+    padding:10px 10px;
+    text-align:center;
     background-color:${AppColors.background500};
     color:${AppColors.white};
     text-decoration:none;
+    border:2px solid ${AppColors.background500};
+      border-radius:8px;
+      transition:all 0.7s ease-in-out;
     &:hover{
+        background-color:${({ colors }) => colors};
         color:${(colors) => colors}
+    border:2px solid white;   
     }
     animation:${linkAnimation} 2s ease-in forwards;
 `;

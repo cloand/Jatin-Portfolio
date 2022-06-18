@@ -8,7 +8,8 @@ import {
 
 const { fontFamily, fontSize } = TextTheme.subtitle1;
 
-const NavStyle = styledComponents.div`  
+const NavStyle = styledComponents.div` 
+ 
 position:sticky;
 top:0;
   display:flex;
@@ -17,14 +18,16 @@ top:0;
   max-width:1700px;
   margin:auto;
   background:${AppColors.background500};
-  
+  height:fit-content;
   `;
 
 const NavLinkStyle = styledComponents.ul`
 
   color:${AppColors.white};
   list-style-type:none;
-  
+  @media(max-width:900px){
+    display:none;
+  }
   
 `;
 
@@ -93,6 +96,17 @@ const NavListOutline = styledComponents.ul`
     display:flex;
 `;
 
+const Hamburg = styledComponents.div`
+`;
+
+const HamburgLine = styledComponents.hr`
+width:2em;
+background-color:${AppColors.white};
+&:active{
+  transform:rotate(45deg);
+}
+`;
+
 export {
   NavListOutline,
   NavStyle,
@@ -100,4 +114,6 @@ export {
   NavLinkList,
   LogoStyle,
   NavAnchor,
+  Hamburg,
+  HamburgLine,
 };

@@ -7,16 +7,18 @@ const IconDisplay = ({ x }) => {
   const [checkMouse, setCheckMouse] = useState(false);
 
   return (
-    <SingleLink colors={x.color}>
-      <a href={x.link} target="_blank">
+    <a href={x.link} target="_blank">
+      <SingleLink colors={x.color}>
         <FontAwesomeIcon
           icon={x.icon}
-          onMouseOver={() => setCheckMouse(true)}
-          onMouseOut={() => setCheckMouse(false)}
-          color={checkMouse ? x.color : AppColors.white}
+          color={AppColors.white}
+
+          // onMouseOver={() => setCheckMouse(true)}
+          // onMouseOut={() => setCheckMouse(false)}
+          // color={checkMouse ? x.color : AppColors.white}
         />
-      </a>
-    </SingleLink>
+      </SingleLink>
+    </a>
   );
 };
 export default IconDisplay;

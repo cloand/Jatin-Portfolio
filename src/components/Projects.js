@@ -1,20 +1,40 @@
 import React from "react";
 import { LeftSectionStyle } from "./leftSectionStyle";
-import { ProjectName, CardMain, TagNames } from "./projectCardStyle";
+import {
+  ProjectName,
+  Titles,
+  Icon,
+  CardMain,
+  TagNames,
+  SingleTag,
+  Expand,
+  RightProjectSection,
+} from "./projectCardStyle";
 
 const ProjectsCard = ({ name, tags }) => {
   return (
     <CardMain>
-      <div>
-        <img src="https://i.postimg.cc/26178hsf/albert-dera-ILip77-Sbm-OE-unsplash.jpg" />
-      </div>
-      <div>
+      <img
+        src="https://i.postimg.cc/26178hsf/albert-dera-ILip77-Sbm-OE-unsplash.jpg"
+        width="30%"
+        height="100%"
+        style={{ borderRadius: "25px" }}
+      />
+
+      <RightProjectSection>
         <div>
-          <ProjectName>{name}</ProjectName>
-          <TagNames></TagNames>
+          <Titles>
+            <Icon></Icon>
+            <ProjectName>{name}</ProjectName>
+          </Titles>
+          <TagNames>
+            {tags.map((i) => {
+              return <SingleTag colors={i.color}>{i.label}</SingleTag>;
+            })}
+          </TagNames>
         </div>
-        <div></div>
-      </div>
+        <Expand>Read More</Expand>
+      </RightProjectSection>
     </CardMain>
   );
 };

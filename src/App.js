@@ -4,7 +4,11 @@ import NavBar from "./components/NavBar";
 import styledComponents from "styled-components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckSquare,
+  faCircleXmark,
+  faCoffee,
+} from "@fortawesome/free-solid-svg-icons";
 import AboutComp from "./components/About";
 import ProjectsCard from "./components/Projects";
 import { Api } from "./constant/constant";
@@ -87,11 +91,7 @@ const App = () => {
       </div>
       <div style={projectStyle} ref={projectRef}>
         {post.projects.map((i) => (
-          <ProjectsCard
-            key={i.id}
-            name={i.name}
-            tags={["Flutter", "Ui/Ux", "Firebase", "API"]}
-          />
+          <ProjectsCard key={i.id} name={i.name} tags={i.tags} />
         ))}
       </div>
     </>
@@ -103,4 +103,8 @@ export default App;
 const projectStyle = {
   maxWidth: "1750px",
   margin: "auto",
+  display: "flex",
+  flexWrap: "wrap",
+  height: "100vh",
+  paddingTop: "4em",
 };
