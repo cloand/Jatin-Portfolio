@@ -9,8 +9,9 @@ import {
 const { fontFamily, fontSize } = TextTheme.subtitle1;
 
 const NavStyle = styledComponents.div` 
- 
+ z-index:1;
 position:sticky;
+
 top:0;
   display:flex;
   align-items:center;
@@ -19,6 +20,8 @@ top:0;
   margin:auto;
   background:${AppColors.background500};
   height:fit-content;
+ 
+  
   `;
 
 const NavLinkStyle = styledComponents.ul`
@@ -26,7 +29,7 @@ const NavLinkStyle = styledComponents.ul`
   color:${AppColors.white};
   list-style-type:none;
   @media(max-width:900px){
-    display:none;
+    display:none
   }
   
 `;
@@ -94,16 +97,27 @@ const NavAnchor = styledComponents.a`
 
 const NavListOutline = styledComponents.ul`
     display:flex;
+    @media(max-width:900px){
+      display:none;
+    }
+`;
+
+const NavListHanburg = styledComponents.ul`
+    display:none;
+    @media(max-width:900px){
+      position:fixed;
+      top:7%;
+      right:4%;
+      border:1px solid white;
+      display:${({ state }) => (state == true ? "block" : "none")}
+      
+    }
 `;
 
 const Hamburg = styledComponents.div`
-`;
-
-const HamburgLine = styledComponents.hr`
-width:2em;
-background-color:${AppColors.white};
-&:active{
-  transform:rotate(45deg);
+display:none;
+@media(max-width:900px){
+  display:block;
 }
 `;
 
@@ -115,5 +129,5 @@ export {
   LogoStyle,
   NavAnchor,
   Hamburg,
-  HamburgLine,
+  NavListHanburg,
 };

@@ -1,25 +1,45 @@
-import React, { forwardRef, useEffect } from "react";
-import {
-  NavStyle,
-  NavLinkStyle,
-  LogoStyle,
-  Hamburg,
-  HamburgLine,
-} from "./navBarStyle";
+import React, { forwardRef, useEffect, useState } from "react";
+import { NavStyle, NavLinkStyle, Hamburg, Options } from "./navBarStyle";
 import NavData from "./navData";
 import { ReactComponent as Logo } from "../assets/jatinLogo.svg";
-import { apiData } from "../services/services";
+// import { apiData } from "../services/services";
+import { useRive } from "rive-react";
+import Menu from "../assets/menu.riv";
 
 const NavBar = (props, ref) => {
-  const { method, change } = props;
+  const { method, change, stateCheck, setHanburgStateCheck } = props;
   const { homeRef, aboutRef, projectRef, experienceRef, contactRef } = ref;
+  const [anime, setAnime] = useState(null);
+
+  const { RiveComponent, rive } = useRive({
+    src: Menu,
+    animations: anime,
+    autoplay: false,
+  });
+
+  const clickableState = () => {
+    if (stateCheck) {
+      setAnime("close");
+    } else {
+      setAnime("open");
+    }
+  };
+
   return (
     <NavStyle>
       <Logo />
+
       <Hamburg>
-        <HamburgLine></HamburgLine>
-        <HamburgLine></HamburgLine>
-        <HamburgLine></HamburgLine>
+        <RiveComponent
+          onClick={() => {
+            clickableState();
+            setHanburgStateCheck();
+          }}
+          style={{
+            height: "50px",
+            width: "50px",
+          }}
+        />
       </Hamburg>
       <NavLinkStyle>
         <NavData
