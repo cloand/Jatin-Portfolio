@@ -11,7 +11,7 @@ import {
   RightProjectSection,
 } from "./projectCardStyle";
 
-const ProjectsCard = ({ name, tags }) => {
+const ProjectsCard = ({ name, tags, icon }) => {
   return (
     <CardMain>
       <img
@@ -24,7 +24,8 @@ const ProjectsCard = ({ name, tags }) => {
       <RightProjectSection>
         <div>
           <Titles>
-            <Icon></Icon>
+            <Icon src={icon} />
+
             <ProjectName>{name}</ProjectName>
           </Titles>
           <TagNames>

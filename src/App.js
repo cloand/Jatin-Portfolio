@@ -4,6 +4,14 @@ import NavBar from "./components/NavBar";
 import styledComponents from "styled-components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+
+import {
+  solid,
+  regular,
+  brands,
+} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {
   faCheckSquare,
   faCircleXmark,
@@ -13,11 +21,15 @@ import AboutComp from "./components/About";
 import ProjectsCard from "./components/Projects";
 import { Api } from "./constant/constant";
 import Loading from "./assets/loading.riv";
-import Rive from "rive-react";
+import Rive, { useRive } from "rive-react";
+import NavDataMobile from "./components/navDataMobile";
+import ContactSection from "./components/contactSection";
+import ProjectSection from "./components/projectSection";
 
 export const myContext = React.createContext();
+export const navState = React.createContext();
 
-library.add(fab, faCheckSquare, faCoffee);
+library.add(fab, faCheckSquare, faCoffee, far, fas);
 
 const HomeSection = styledComponents.div`
 
@@ -29,6 +41,8 @@ const App = () => {
   const [post, setPost] = useState({});
   const [check, setCheck] = useState(false);
   const [clickChange, setClickChange] = useState(true);
+  const [hanburgStateCheck, setHanburgStateCheck] = useState(false);
+  const [navMenu, setNavMenu] = useState(false);
 
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
@@ -37,7 +51,7 @@ const App = () => {
   const contactRef = useRef(null);
 
   const getApi = async () => {
-    const res = await fetch(Api.baseUrl);
+    const res = await fetch(Api.baseUrl, { mode: "cors" });
     setPost(await res.json());
     setCheck(true);
   };
@@ -45,6 +59,16 @@ const App = () => {
   useEffect(() => {
     getApi();
   }, [clickChange]);
+
+  const { RiveComponent, rive } = useRive({
+    src: Loading,
+    animations: "Animation 1",
+    useOffscreenRenderer: false,
+  });
+
+  const changingHanburgState = () => {
+    setHanburgStateCheck((prevHanburgStateCheck) => !prevHanburgStateCheck);
+  };
 
   const scrollToComp = (ref) => {
     if (ref != null) {
@@ -62,11 +86,12 @@ const App = () => {
 
   if (!check) {
     return (
-      <Rive
-        src={Loading}
-        style={{ height: "100vh", width: "100" }}
-        useOffscreenRenderer={false}
-      />
+      <RiveComponent style={{ height: "100vh", width: "100" }} />
+      // <Rive
+      //   src={Loading}
+      //   style={{ height: "100vh", width: "100" }}
+      //   useOffscreenRenderer={false}
+      // />
     );
   }
 
@@ -77,8 +102,17 @@ const App = () => {
           ref={{ homeRef, aboutRef, projectRef, experienceRef, contactRef }}
           method={scrollToComp}
           change={changingMethod}
+          stateCheck={hanburgStateCheck}
+          setHanburgStateCheck={changingHanburgState}
         />
       </myContext.Provider>
+      <NavDataMobile
+        ref={{ homeRef, aboutRef, projectRef, experienceRef, contactRef }}
+        method={scrollToComp}
+        change={changingMethod}
+        stateCheck={hanburgStateCheck}
+        setHanburgStateCheck={changingHanburgState}
+      />
       <div ref={homeRef}>
         <HomeSection>
           <LeftSection post={post} />
@@ -89,10 +123,11 @@ const App = () => {
           <LeftSection />
         </AboutComp>
       </div>
-      <div style={projectStyle} ref={projectRef}>
-        {post.projects.map((i) => (
-          <ProjectsCard key={i.id} name={i.name} tags={i.tags} />
-        ))}
+      <div ref={projectRef}>
+        <ProjectSection projects={post.projects} />
+      </div>
+      <div ref={contactRef}>
+        <ContactSection contacts={post.contacts} socials={post.socials} />
       </div>
     </>
   );
@@ -105,6 +140,6 @@ const projectStyle = {
   margin: "auto",
   display: "flex",
   flexWrap: "wrap",
-  height: "100vh",
+
   paddingTop: "4em",
 };

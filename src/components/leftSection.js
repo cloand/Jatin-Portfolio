@@ -15,11 +15,15 @@ import {
 } from "./leftSectionStyle";
 
 import { Button, textOnlyButton } from "./Button";
-import Rive from "rive-react";
+import Rive, { useRive } from "rive-react";
 import IconDisplay from "./fontAwesomeDisplay";
 import Duck from "../assets/duck.riv";
 
 const LeftSection = ({ post }) => {
+  const { rive, RiveComponent } = useRive({
+    src: "../assets/duck.riv",
+  });
+
   return (
     <LeftSectionStyle>
       <LeftSectionData>

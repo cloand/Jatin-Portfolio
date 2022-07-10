@@ -10,7 +10,7 @@ class TextTheme {
   };
 
   static heading1 = {
-    fontFamily: "'Roboto Slab', serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: "96px",
     fontStyle: "normal",
     fontWeight: "400",
@@ -20,7 +20,7 @@ class TextTheme {
   };
 
   static heading2 = {
-    fontFamily: "'Roboto Slab', serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: "60px",
     fontStyle: "normal",
     fontWeight: "400",
@@ -30,7 +30,7 @@ class TextTheme {
   };
 
   static heading3 = {
-    fontFamily: "'Roboto Slab', serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: "48px",
     fontStyle: "normal",
     fontWeight: "400",
@@ -40,7 +40,7 @@ class TextTheme {
   };
 
   static heading4 = {
-    fontFamily: "'Roboto Slab', serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: "34px",
     fontStyle: "normal",
     fontWeight: "400",
@@ -50,7 +50,7 @@ class TextTheme {
   };
 
   static heading5 = {
-    fontFamily: "'Roboto Slab', serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: "24px",
     fontStyle: "normal",
     fontWeight: "400",
@@ -60,7 +60,7 @@ class TextTheme {
   };
 
   static heading6 = {
-    fontFamily: "'Roboto Slab', serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: "20px",
     fontStyle: "normal",
     fontWeight: "400",
@@ -70,7 +70,7 @@ class TextTheme {
   };
 
   static subtitle1 = {
-    fontFamily: "'Roboto Slab', serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: "400",
@@ -80,7 +80,7 @@ class TextTheme {
   };
 
   static subtitle2 = {
-    fontFamily: "'Roboto Slab', serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: "14px",
     fontStyle: "normal",
     fontWeight: "500",

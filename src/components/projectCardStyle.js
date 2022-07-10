@@ -38,12 +38,12 @@ const Titles = styledComponents.div`
     font-family: ${fontFamilyH6};
 `;
 
-const Icon = styledComponents.div`
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: yellow;
+const Icon = styledComponents.img`
+    height: 70px;
+    width: 70px;
    
+    
+  
 `;
 
 const ProjectName = styledComponents.div`

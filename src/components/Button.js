@@ -7,8 +7,11 @@ const ButtonStyle = styledComponents.button`
   text-decoration: none;
   z-index: 1;
   border-radius:10px;
-  width:60%;
-  min-height:3em;
+  height: 48px;
+  width:250px;
+  padding:.5em .7em;
+  // min-height:3em;
+  borer: 0;
   &:hover {
     cursor: pointer;
    
@@ -36,18 +39,24 @@ const ButtonStyle = styledComponents.button`
   }
 `;
 
-function Button({ children: label, buttonType = ButtonType.primary }) {
+function Button({
+  children: label,
+  buttonType = ButtonType.primary,
+  color: color,
+  onClick: onClick,
+}) {
   const _buttonType =
     buttonType === ButtonType.primary ? primaryButton : textOnlyButton;
   return (
     <ButtonStyle
       buttonChoice={_buttonType}
       href="#"
+      onClick={onClick}
       style={{
         border: 0,
-        ...TextTheme.button,
-
+        ...TextTheme.heading6,
         ..._buttonType,
+        backgroundColor: color != null ? color : _buttonType.background,
         textAlign: "center",
       }}
     >

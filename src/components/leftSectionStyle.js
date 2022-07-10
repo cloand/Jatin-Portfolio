@@ -46,7 +46,7 @@ const SingleLink = styledComponents.div`
     text-decoration:none;
     border:2px solid ${AppColors.background500};
       border-radius:8px;
-      transition:all 0.7s ease-in-out;
+      transition:all .2s ease-in-out;
     &:hover{
         background-color:${({ colors }) => colors};
         color:${(colors) => colors}

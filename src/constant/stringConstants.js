@@ -5,6 +5,8 @@ const Strings = {
   about: "About",
   experience: "Experience",
   projects: "Projects",
+  contactMessage:
+    "You can contact me on any of my social media accounts on non-work-related issues/chit-chat",
 };
 
 const Api = {
@@ -19,4 +21,5 @@ const navHeadings = [
   Strings.experience,
   Strings.contact,
 ];
+
 export { Strings, Api, navHeadings };
