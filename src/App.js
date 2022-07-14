@@ -80,17 +80,17 @@ const App = () => {
 
   const mailchimp = require("@mailchimp/mailchimp_marketing");
 
-  mailchimp.setConfig({
-    apiKey: "Basic <base64-encoding of anystring:flGtJYe6JHobvPcHuhz3WQ-us17>",
-    server: "us17",
-  });
+  // mailchimp.setConfig({
+  //   apiKey: "Basic <base64-encoding of anystring:flGtJYe6JHobvPcHuhz3WQ-us17>",
+  //   server: "us17",
+  // });
 
-  async function callPing() {
-    const response = await mailchimp.ping.get();
-    console.log(response);
-  }
+  // async function callPing() {
+  //   const response = await mailchimp.ping.get();
+  //   console.log(response);
+  // }
 
-  callPing();
+  // callPing();
 
   // const mailchimpTx = require("mailchimp_transactional")(
   //   "flGtJYe6JHobvPcHuhz3WQ"
