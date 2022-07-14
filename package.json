@@ -2,6 +2,7 @@
   "name": "jatin-portfolio",
   "version": "0.1.0",
   "homepage": "https://cloand.github.io/Jatin-Portfolio",
+  "proxy": "http://jatin5120-portfolio.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
