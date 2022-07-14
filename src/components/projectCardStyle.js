@@ -16,7 +16,8 @@ const CardMain = styledComponents.div`
     padding: 1.5em;
     max-width: 800px;
   color: ${AppColors.white};
-  margin:2em;
+ align-self: center;
+  justify-self: center;
 `;
 
 const RightProjectSection = styledComponents.div`
@@ -36,6 +37,7 @@ const Titles = styledComponents.div`
   
     font-size: ${fontSizeH6};
     font-family: ${fontFamilyH6};
+    
 `;
 
 const Icon = styledComponents.img`
@@ -47,8 +49,9 @@ const Icon = styledComponents.img`
 `;
 
 const ProjectName = styledComponents.div`
-   
+   padding-left:.5em;
     width:80%;
+    
 `;
 
 const TagNames = styledComponents.div`
@@ -58,7 +61,10 @@ const TagNames = styledComponents.div`
     margin-top: 2.7em;
     font-size: ${fontSizeSub2};
     font-family: ${fontFamilySub2};
-  
+@media(max-width:600px){
+        font-family:${TextTheme.caption.fontFamily};
+        font-size:${TextTheme.caption.fontSize};
+    }  
 `;
 const SingleTag = styledComponents.div`
     background-color: ${({ colors }) => colors};
@@ -74,6 +80,23 @@ const Expand = styledComponents.div`
     font-family: ${fontFamilySub2};
 `;
 
+const Counter = styledComponents.div`
+   width:40px;
+   height:40px;
+    background:${AppColors.background700};
+    border-radius:50%;
+    text-align:center;
+    line-height:24px;
+    padding:.5em .5em;
+     margin-top:2em;
+`;
+
+const TagsOuter = styledComponents.div`
+    display:flex;
+    
+   
+`;
+
 export {
   CardMain,
   RightProjectSection,
@@ -83,4 +106,6 @@ export {
   TagNames,
   SingleTag,
   Expand,
+  Counter,
+  TagsOuter,
 };

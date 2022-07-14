@@ -7,7 +7,14 @@ import { useRive } from "rive-react";
 import Menu from "../assets/menu.riv";
 
 const NavBar = (props, ref) => {
-  const { method, change, stateCheck, setHanburgStateCheck } = props;
+  const {
+    method,
+    change,
+    stateCheck,
+    setHanburgStateCheck,
+    active,
+    changingActive,
+  } = props;
   const { homeRef, aboutRef, projectRef, experienceRef, contactRef } = ref;
   const [anime, setAnime] = useState(null);
 
@@ -46,6 +53,8 @@ const NavBar = (props, ref) => {
           method={method}
           change={change}
           ref={{ homeRef, aboutRef, projectRef, experienceRef, contactRef }}
+          active={active}
+          changingActive={changingActive}
         />
       </NavLinkStyle>
     </NavStyle>

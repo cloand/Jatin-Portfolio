@@ -38,19 +38,30 @@ const LinksStyle = styledComponents.div`
     justify-content:space-between;
 `;
 
-const SingleLink = styledComponents.div`
-    padding:10px 10px;
-    text-align:center;
+const SingleLink = styledComponents.li`
+ 
+   position:relative;
+    height:35px;
+    width:35px;
+   
+ 
     background-color:${AppColors.background500};
     color:${AppColors.white};
     text-decoration:none;
-    border:2px solid ${AppColors.background500};
-      border-radius:8px;
+    display:inline-block;
+
+    // border:2px solid white;
+      border-radius:50%;
+    
       transition:all .2s ease-in-out;
     &:hover{
-        background-color:${({ colors }) => colors};
+        // background-color:${({ colors }) => colors};
+        background-color:${AppColors.background300};
         color:${(colors) => colors}
-    border:2px solid white;   
+    // border:2px solid white;   
+    box-shadow:0 0 2px white;
+   
+   
     }
     animation:${linkAnimation} 2s ease-in forwards;
 `;
@@ -136,6 +147,12 @@ const ButtonInner = styledComponents.div`
    
 `;
 
+const Anchored = styledComponents.a`
+    &:hover{
+        transform:scale(1.2);
+    }
+`;
+
 export {
   LeftSectionData,
   ButtonInner,
@@ -150,4 +167,5 @@ export {
   DesignationStyle,
   RightSectionStyle,
   ButtonOuter,
+  Anchored,
 };

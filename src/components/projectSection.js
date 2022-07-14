@@ -26,7 +26,7 @@ const ProjectSection = ({ projects }) => {
               />
             ))
             .reverse()
-            .slice(0, 6)}
+            .slice(0, 15)}
         </BottomSection>
       </ProjectInner>
     </Project>

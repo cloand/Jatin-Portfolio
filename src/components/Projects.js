@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { LeftSectionStyle } from "./leftSectionStyle";
 import {
   ProjectName,
@@ -9,9 +9,12 @@ import {
   SingleTag,
   Expand,
   RightProjectSection,
+  Counter,
+  TagsOuter,
 } from "./projectCardStyle";
 
 const ProjectsCard = ({ name, tags, icon }) => {
+  const count = tags.length - 2;
   return (
     <CardMain>
       <img
@@ -28,11 +31,16 @@ const ProjectsCard = ({ name, tags, icon }) => {
 
             <ProjectName>{name}</ProjectName>
           </Titles>
-          <TagNames>
-            {tags.map((i) => {
-              return <SingleTag colors={i.color}>{i.label}</SingleTag>;
-            })}
-          </TagNames>
+          <TagsOuter>
+            <TagNames>
+              {tags.map((i, index) => {
+                if (index < 2) {
+                  return <SingleTag colors={i.color}>{i.label}</SingleTag>;
+                }
+              })}
+            </TagNames>
+            {count > 0 ? <Counter> +{count}</Counter> : null}
+          </TagsOuter>
         </div>
         <Expand>Read More</Expand>
       </RightProjectSection>

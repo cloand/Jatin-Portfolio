@@ -1,31 +1,33 @@
 import React from "react";
 import {
+  About,
+  AboutInner,
+  BottomLeft,
+  BottomRight,
+  BottomSection,
+  TopSection,
+  MyImage,
+} from "./aboutStyle";
+import {
   BioOuter,
   LeftSectionData,
   LeftSectionStyle,
   RightSectionStyle,
 } from "./leftSectionStyle";
 
-const AboutComp = (props) => {
+const AboutComp = ({ data }) => {
   return (
-    <LeftSectionStyle>
-      <RightSectionStyle />
-      <LeftSectionData>
-        <BioOuter>
-          <h1>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </h1>
-        </BioOuter>
-      </LeftSectionData>
-    </LeftSectionStyle>
+    <About>
+      <AboutInner>
+        <TopSection>About</TopSection>
+        <BottomSection>
+          <BottomLeft>
+            <MyImage src={data.image} />
+          </BottomLeft>
+          <BottomRight>{data.description}</BottomRight>
+        </BottomSection>
+      </AboutInner>
+    </About>
   );
 };
 

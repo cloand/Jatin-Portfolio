@@ -1,14 +1,13 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { NavLinkList, NavAnchor } from "./navBarStyle";
 import { Strings } from "../constant/stringConstants";
 
 const NavDataSkeleton = (props, ref) => {
-  const initialState = Strings.home;
-  const [active, setActive] = useState(initialState);
   let activeSection = Strings.home;
 
-  const { method, change } = props;
+  const { method, change, active, changingActive } = props;
   const { homeRef, aboutRef, projectRef, experienceRef, contactRef } = ref;
+
   return (
     <>
       <NavLinkList
@@ -16,7 +15,7 @@ const NavDataSkeleton = (props, ref) => {
         active={active}
         onClick={() => {
           change();
-          setActive(Strings.home);
+          changingActive(Strings.home);
           method(homeRef.current);
         }}
       >
@@ -28,7 +27,7 @@ const NavDataSkeleton = (props, ref) => {
         active={active}
         onClick={() => {
           change();
-          setActive(Strings.about);
+          changingActive(Strings.about);
           method(aboutRef.current);
         }}
       >
@@ -40,7 +39,7 @@ const NavDataSkeleton = (props, ref) => {
         active={active}
         onClick={() => {
           change();
-          setActive(Strings.projects);
+          changingActive(Strings.projects);
           method(projectRef.current);
         }}
       >
@@ -51,7 +50,7 @@ const NavDataSkeleton = (props, ref) => {
         active={active}
         onClick={() => {
           change();
-          setActive(Strings.contact);
+          changingActive(Strings.contact);
           method(contactRef.current);
         }}
       >

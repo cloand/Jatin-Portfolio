@@ -12,7 +12,6 @@ const ContactOuter = StyledComponents.div`
 `;
 
 const ContactInner = StyledComponents.div`
- 
   margin-top:6em;
 `;
 

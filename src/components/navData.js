@@ -7,7 +7,7 @@ import smooth from "react-scroll/modules/mixins/smooth";
 import { NavLinkList, NavListOutline, NavAnchor } from "./navBarStyle";
 
 const NavData = (props, ref) => {
-  const { method, change } = props;
+  const { method, change, active, changingActive } = props;
   const { homeRef, aboutRef, projectRef, experienceRef, contactRef } = ref;
 
   return (
@@ -16,6 +16,8 @@ const NavData = (props, ref) => {
         method={method}
         change={change}
         ref={{ homeRef, aboutRef, projectRef, experienceRef, contactRef }}
+        active={active}
+        changingActive={changingActive}
       />
     </a>
   );

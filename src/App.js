@@ -19,7 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import AboutComp from "./components/About";
 import ProjectsCard from "./components/Projects";
-import { Api } from "./constant/constant";
+import { Api, Strings } from "./constant/constant";
 import Loading from "./assets/loading.riv";
 import Rive, { useRive } from "rive-react";
 import NavDataMobile from "./components/navDataMobile";
@@ -43,6 +43,7 @@ const App = () => {
   const [clickChange, setClickChange] = useState(true);
   const [hanburgStateCheck, setHanburgStateCheck] = useState(false);
   const [navMenu, setNavMenu] = useState(false);
+  const [active, setActive] = useState(Strings.home);
 
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
@@ -56,9 +57,58 @@ const App = () => {
     setCheck(true);
   };
 
+  const scrollIntoView = (myRef) => {
+    const axis = myRef.getBoundingClientRect();
+    if (axis.top < window.innerHeight / 2 && axis.bottom > 0) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const highlights = () => {
+    if (scrollIntoView(projectRef.current)) {
+      setActive(Strings.projects);
+    } else if (scrollIntoView(aboutRef.current)) {
+      setActive(Strings.about);
+    } else if (scrollIntoView(contactRef.current)) {
+      setActive(Strings.contact);
+    } else {
+      setActive(Strings.home);
+    }
+  };
+
+  const mailchimp = require("@mailchimp/mailchimp_marketing");
+
+  mailchimp.setConfig({
+    apiKey: "Basic <base64-encoding of anystring:flGtJYe6JHobvPcHuhz3WQ-us17>",
+    server: "us17",
+  });
+
+  async function callPing() {
+    const response = await mailchimp.ping.get();
+    console.log(response);
+  }
+
+  callPing();
+
+  // const mailchimpTx = require("mailchimp_transactional")(
+  //   "flGtJYe6JHobvPcHuhz3WQ"
+  // );
+
+  // async function run() {
+  //   const response = await mailchimpTx.users.ping();
+  //   console.log(response);
+  // }
+
+  // run();
+
   useEffect(() => {
     getApi();
-  }, [clickChange]);
+    if (homeRef.current) {
+      window.addEventListener("scroll", highlights);
+    }
+  });
 
   const { RiveComponent, rive } = useRive({
     src: Loading,
@@ -68,6 +118,10 @@ const App = () => {
 
   const changingHanburgState = () => {
     setHanburgStateCheck((prevHanburgStateCheck) => !prevHanburgStateCheck);
+  };
+
+  const changingActiveState = (myString) => {
+    setActive(myString);
   };
 
   const scrollToComp = (ref) => {
@@ -104,6 +158,8 @@ const App = () => {
           change={changingMethod}
           stateCheck={hanburgStateCheck}
           setHanburgStateCheck={changingHanburgState}
+          active={active}
+          changingActive={changingActiveState}
         />
       </myContext.Provider>
       <NavDataMobile
@@ -119,9 +175,7 @@ const App = () => {
         </HomeSection>
       </div>
       <div className="hello" ref={aboutRef}>
-        <AboutComp>
-          <LeftSection />
-        </AboutComp>
+        <AboutComp data={post.about} />
       </div>
       <div ref={projectRef}>
         <ProjectSection projects={post.projects} />
