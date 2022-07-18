@@ -14,11 +14,11 @@ const ButtonStyle = styledComponents.button`
   borer: 0;
   &:hover {
     cursor: pointer;
-   
+
   }
   &::before{
     content: "";
-    position: absolute;z
+    position: absolute;
     top: 0;
     left:0;
     right: 0;
@@ -44,6 +44,7 @@ function Button({
   buttonType = ButtonType.primary,
   color: color,
   onClick: onClick,
+  type,
 }) {
   const _buttonType =
     buttonType === ButtonType.primary ? primaryButton : textOnlyButton;

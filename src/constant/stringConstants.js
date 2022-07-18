@@ -10,7 +10,7 @@ const Strings = {
 };
 
 const Api = {
-  baseUrl: "https://jatin5120-portfolio.herokuapp.com/",
+  baseUrl: "http://jatin5120-portfolio.herokuapp.com/",
   projectRoute: "project/",
 };
 

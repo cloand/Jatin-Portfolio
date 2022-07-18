@@ -16,21 +16,60 @@ import {
 } from "./contactFormStyle";
 import { Button } from "./Button";
 import AppColors from "../constant/colors";
+import firebase from "../store/firebase";
 
 const ContactForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [mail, setMail] = useState("");
-  const [phone, setPhone] = useState();
-
+  const [phone, setPhone] = useState(null);
   const [otherService, setOtherService] = useState(null);
   const [message, setMessage] = useState("");
-
   const [radio, setRadio] = useState(null);
 
-  useEffect(() => {
-    console.log(firstName);
-  }, [firstName]);
+  const currentData = {
+    firstName: firstName,
+    lastname: lastName,
+    mail: mail,
+    phone: phone,
+    otherService: otherService,
+    message: message,
+    requestType: radio,
+  };
+
+  const ref = firebase.firestore().collection("requests");
+  let documentReference = null;
+
+  const setID = async () => {
+    const d = new Date();
+    const date = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+    const time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    const check = await ref.doc(documentReference.id).update({
+      referenceId: documentReference.id,
+      date: date,
+      time: time,
+    });
+    console.log(documentReference.id);
+  };
+
+  const sendData = async (e) => {
+    e.preventDefault();
+
+    documentReference = await ref.add(currentData);
+
+    setFirstName("");
+    setLastName("");
+    setMail("");
+    setPhone("");
+    setOtherService(null);
+    setRadio(null);
+    setMessage("");
+    setID();
+
+    // await documentReference.update({
+    //   requestID: documentReference.id,
+    // });
+  };
 
   return (
     <Form>
@@ -88,6 +127,7 @@ const ContactForm = () => {
             value="flutter"
             checked={radio === "flutter"}
             onChange={(e) => setRadio(e.target.value)}
+            required
           />
           <ServiceLabels for="flutter">Flutter </ServiceLabels>
 
@@ -97,6 +137,7 @@ const ContactForm = () => {
             value="python"
             checked={radio === "python"}
             onChange={(e) => setRadio(e.target.value)}
+            required
           />
           <ServiceLabels for="python">Python</ServiceLabels>
 
@@ -106,6 +147,7 @@ const ContactForm = () => {
             checked={radio === "other"}
             value="other"
             onChange={(e) => setRadio(e.target.value)}
+            required
           />
           <ServiceLabels for="other">Other</ServiceLabels>
         </ServiceOutline>
@@ -132,11 +174,17 @@ const ContactForm = () => {
           value={message}
           placeholder="Your message for me."
           onChange={(e) => setMessage(e.target.value)}
+          required
         />
       </InputOutlineMessage>
       <ButtonSubmit>
         {/* <Submit type="submit" value="Send Message" /> */}
-        <Button children={"Submit"} color={AppColors.secondary500}></Button>
+        <Button
+          children={"Submit"}
+          color={AppColors.secondary500}
+          onClick={(e) => sendData(e)}
+          type="button"
+        ></Button>
       </ButtonSubmit>
     </Form>
   );

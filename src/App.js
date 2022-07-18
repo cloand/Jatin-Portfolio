@@ -25,6 +25,7 @@ import Rive, { useRive } from "rive-react";
 import NavDataMobile from "./components/navDataMobile";
 import ContactSection from "./components/contactSection";
 import ProjectSection from "./components/projectSection";
+import Messages from "./store/messageData";
 
 export const myContext = React.createContext();
 export const navState = React.createContext();
@@ -51,10 +52,39 @@ const App = () => {
   const experienceRef = useRef(null);
   const contactRef = useRef(null);
 
-  const getApi = async () => {
-    const res = await fetch(Api.baseUrl, { mode: "cors" });
-    setPost(await res.json());
-    setCheck(true);
+  const getApi = () => {
+    fetch(Api.baseUrl, {
+      // origin: "http://localhost:8080",
+      mode: "cors",
+      any: {
+        // "strict-origin-when-cross-origin": "*",
+        // "X-Http-Method-Override": "*",
+        "Cache-Control": "no-cache, no-store",
+        Connection: " keep-alive",
+        "Content-Length": "506",
+        "Content-Type": "text/html; charset=utf-8",
+        Date: "Sun, 17 Jul 2022 17:01:45 GMT",
+        Server: "Cowboy",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "strict-origin-when-cross-origin, X-Http-Method-Override, Origin, X-Requested-With, Content-Type, Accept",
+        // "RateLimit-Remaining": "allowed requests remaining in current interval",
+        // "Access-Control-Allow-Origin": "$http_origin",
+        // "Access-Control-Allow-Methods": "OPTIONS, POST, GET",
+        // "Access-Control-Max-Age": "3600",
+        // "Access-Control-Allow-Credentials": "true",
+        // "Access-Control-Allow-Headers": "Content-Type",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setPost(data);
+        setCheck(true);
+        console.log(data);
+      })
+      .catch(console.error);
   };
 
   const scrollIntoView = (myRef) => {
@@ -78,33 +108,11 @@ const App = () => {
     }
   };
 
-  const mailchimp = require("@mailchimp/mailchimp_marketing");
-
-  // mailchimp.setConfig({
-  //   apiKey: "Basic <base64-encoding of anystring:flGtJYe6JHobvPcHuhz3WQ-us17>",
-  //   server: "us17",
-  // });
-
-  // async function callPing() {
-  //   const response = await mailchimp.ping.get();
-  //   console.log(response);
-  // }
-
-  // callPing();
-
-  // const mailchimpTx = require("mailchimp_transactional")(
-  //   "flGtJYe6JHobvPcHuhz3WQ"
-  // );
-
-  // async function run() {
-  //   const response = await mailchimpTx.users.ping();
-  //   console.log(response);
-  // }
-
-  // run();
-
   useEffect(() => {
     getApi();
+  }, []);
+
+  useEffect(() => {
     if (homeRef.current) {
       window.addEventListener("scroll", highlights);
     }
@@ -139,18 +147,12 @@ const App = () => {
   };
 
   if (!check) {
-    return (
-      <RiveComponent style={{ height: "100vh", width: "100" }} />
-      // <Rive
-      //   src={Loading}
-      //   style={{ height: "100vh", width: "100" }}
-      //   useOffscreenRenderer={false}
-      // />
-    );
+    return <RiveComponent style={{ height: "100vh", width: "100" }} />;
   }
 
   return (
     <>
+      {/* <Messages /> */}
       <myContext.Provider value={{ clickChange }}>
         <NavBar
           ref={{ homeRef, aboutRef, projectRef, experienceRef, contactRef }}
@@ -186,7 +188,7 @@ const App = () => {
     </>
   );
 };
-// };
+
 export default App;
 
 const projectStyle = {
