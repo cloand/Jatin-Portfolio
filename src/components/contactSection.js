@@ -23,8 +23,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Strings } from "../constant/stringConstants";
 import AppColors from "../constant/colors";
 import ContactForm from "./contactForm";
+import useGetCollection from "../customHooks/useGetCollection";
 
-const ContactSection = ({ contacts, socials }) => {
+const ContactSection = () => {
+  const [socials, socialsError, isSocialsLoading] = useGetCollection("socials");
+  const [contact, contactsError, isContactsLoading] = useGetCollection(
+    "contacts"
+  );
+
+  if (!contact || !socials) {
+    return <div>wait</div>;
+  }
+
   return (
     <>
       <ContactOuter>
@@ -44,7 +54,7 @@ const ContactSection = ({ contacts, socials }) => {
                   Fill out the form, and I will contact you within 24 hours
                 </LeftDisc>
                 <Contacts>
-                  {contacts.map((contact) => (
+                  {contact.map((contact) => (
                     <LeftContacts>
                       <FontAwesomeIcon
                         icon={contact.icon}

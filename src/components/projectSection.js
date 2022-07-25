@@ -1,4 +1,6 @@
 import React from "react";
+import useGetCollection from "../customHooks/useGetCollection";
+import useGetDoc from "../customHooks/useGetData";
 import ProjectsCard from "./Projects";
 import {
   Project,
@@ -8,7 +10,15 @@ import {
   BottomSection,
 } from "./projectSectionStyle";
 
-const ProjectSection = ({ projects }) => {
+const ProjectSection = () => {
+  const [projects, projectsError, isProjectsLoading] = useGetCollection(
+    "projects"
+  );
+
+  if (isProjectsLoading) {
+    return <div>wait</div>;
+  }
+
   return (
     <Project>
       <ProjectInner>

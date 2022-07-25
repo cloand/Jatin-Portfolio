@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const IconDisplay = ({ x }) => {
   const [checkMouse, setCheckMouse] = useState(false);
+  console.log(x);
 
   return (
     <Anchored

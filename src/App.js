@@ -6,6 +6,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+import app from "./store/firebase";
+import useGetDoc from "./customHooks/useGetData";
+import useGetCollection from "./customHooks/useGetCollection";
 
 import {
   solid,
@@ -26,7 +29,7 @@ import NavDataMobile from "./components/navDataMobile";
 import ContactSection from "./components/contactSection";
 import ProjectSection from "./components/projectSection";
 import Messages from "./store/messageData";
-
+import { projectData as projects } from "./store/data";
 export const myContext = React.createContext();
 export const navState = React.createContext();
 
@@ -40,7 +43,7 @@ margin:auto;
 
 const App = () => {
   const [post, setPost] = useState({});
-  const [check, setCheck] = useState(false);
+  const [check, setCheck] = useState(true);
   const [clickChange, setClickChange] = useState(true);
   const [hanburgStateCheck, setHanburgStateCheck] = useState(false);
   const [navMenu, setNavMenu] = useState(false);
@@ -52,40 +55,16 @@ const App = () => {
   const experienceRef = useRef(null);
   const contactRef = useRef(null);
 
-  const getApi = () => {
-    fetch(Api.baseUrl, {
-      // origin: "http://localhost:8080",
-      mode: "cors",
-      any: {
-        // "strict-origin-when-cross-origin": "*",
-        // "X-Http-Method-Override": "*",
-        "Cache-Control": "no-cache, no-store",
-        Connection: " keep-alive",
-        "Content-Length": "506",
-        "Content-Type": "text/html; charset=utf-8",
-        Date: "Sun, 17 Jul 2022 17:01:45 GMT",
-        Server: "Cowboy",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers":
-          "strict-origin-when-cross-origin, X-Http-Method-Override, Origin, X-Requested-With, Content-Type, Accept",
-        // "RateLimit-Remaining": "allowed requests remaining in current interval",
-        // "Access-Control-Allow-Origin": "$http_origin",
-        // "Access-Control-Allow-Methods": "OPTIONS, POST, GET",
-        // "Access-Control-Max-Age": "3600",
-        // "Access-Control-Allow-Credentials": "true",
-        // "Access-Control-Allow-Headers": "Content-Type",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setPost(data);
-        setCheck(true);
-        console.log(data);
-      })
-      .catch(console.error);
-  };
+  const doc = "2rcG50J8OuZURthc28a0";
+  const collection = "projects";
+
+  //custom
+  // const [data, setData] = useGetDoc(collection, doc);
+  // const [data, error, isLoading] = useGetCollection(collection);
+
+  // if (!isLoading) {
+  //   console.log(data);
+  // }
 
   const scrollIntoView = (myRef) => {
     const axis = myRef.getBoundingClientRect();
@@ -108,14 +87,15 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    getApi();
-  }, []);
+  useEffect(async () => {
+    console.log(await projects());
+  });
 
   useEffect(() => {
     if (homeRef.current) {
       window.addEventListener("scroll", highlights);
     }
+    return window.removeEventListener("scroll", highlights);
   });
 
   const { RiveComponent, rive } = useRive({
@@ -152,7 +132,7 @@ const App = () => {
 
   return (
     <>
-      {/* <Messages /> */}
+      {/* <Messages />
       <myContext.Provider value={{ clickChange }}>
         <NavBar
           ref={{ homeRef, aboutRef, projectRef, experienceRef, contactRef }}
@@ -173,18 +153,18 @@ const App = () => {
       />
       <div ref={homeRef}>
         <HomeSection>
-          <LeftSection post={post} />
+          <LeftSection />
         </HomeSection>
       </div>
       <div className="hello" ref={aboutRef}>
-        <AboutComp data={post.about} />
+        <AboutComp />
       </div>
       <div ref={projectRef}>
         <ProjectSection projects={post.projects} />
       </div>
       <div ref={contactRef}>
-        <ContactSection contacts={post.contacts} socials={post.socials} />
-      </div>
+        <ContactSection />
+      </div> */}
     </>
   );
 };

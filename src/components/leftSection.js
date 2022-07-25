@@ -18,26 +18,35 @@ import { Button, textOnlyButton } from "./Button";
 import Rive, { useRive } from "rive-react";
 import IconDisplay from "./fontAwesomeDisplay";
 import Duck from "../assets/duck.riv";
+import useGetCollection from "../customHooks/useGetCollection";
+import useGetDoc from "../customHooks/useGetData";
 
-const LeftSection = ({ post }) => {
+const LeftSection = () => {
+  const [about, aboutError, isAboutLoading] = useGetDoc("dashboard", "data");
+  const [socials, socialsError, isSocialsLoading] = useGetCollection("socials");
+
   const { rive, RiveComponent } = useRive({
     src: "../assets/duck.riv",
   });
+
+  if (isAboutLoading || isSocialsLoading) {
+    return <div>wait</div>;
+  }
 
   return (
     <LeftSectionStyle>
       <LeftSectionData>
         <BioOuter>
           <LinksStyle>
-            {post.socials.map((x) => (
+            {socials.map((x) => (
               <IconDisplay x={x} />
             ))}
           </LinksStyle>
 
           <BioText>
             <Salutation>Hi, I'm</Salutation>
-            <NameStyle>{post.name}</NameStyle>
-            <DesignationStyle>{post.designation}</DesignationStyle>
+            <NameStyle>{about.name}</NameStyle>
+            <DesignationStyle>{about.designation}</DesignationStyle>
           </BioText>
         </BioOuter>
         <ButtonStyle>
