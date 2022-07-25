@@ -1,4 +1,4 @@
-//collection
+//getCollection
 import firebase from "./firebase";
 
 const getColl = async (collection) => {
@@ -12,54 +12,47 @@ const getColl = async (collection) => {
   return data;
 };
 
-//doc
+//getDoc
 
-const getDoc = async (collection, doc) => {
+const getDoc = async ({collection, doc}) => {
   const ref = firebase
     .firestore()
     .collection(collection)
     .doc(doc);
   let res = await ref.get();
-  return new Promise((resolve) => {
-    resolve(res.data());
-  });
+  return res.data();
 };
+
+//updateProjects
+
+const getTagList = async (tags) => {
+  let tagList = [];
+  for (let [_,tag] of tags.entries()){ 
+   tagList.push(await getDoc({collection:tag.parent.id,doc:tag.id}));
+  
+  }
+  return tagList;
+}
 
 export const projectData = async () => {
-  // console.log(projects[0].tags);
-  // let loading = true;
-  let projects = null;
-  projects = await getColl("projects");
-  for (let i = 0; i < projects.length; i++) {
-    const tags = i.tags;
-    for (let j = 0; j < tags.length; j++) {
-      console.log(tags[j]);
+  let dataDocument = await getDoc({collection:"dashboard",doc:"data"});
+  let projects = [];
+  let projectReferences = dataDocument.projects;
+ 
+  const logData = async() =>{
+    for (let [i,projectRef]of projectReferences.entries()) {
+      console.log(projectRef,"ref");
+      let project = await getDoc({collection: projectRef.parent.id,doc:projectRef.id});
+      const tags = project.tags;
+      const tagList = await getTagList(tags);
+      const projectData = {...project,tags : tagList};
+      projects.push(projectData);
     }
   }
-
-  // projects.forEach((data) => {
-  //   // const [key, value] = data;
-  //   const tags = data.tags;
-  //   tags.forEach(async (tag) => {
-  //     console.log(tag.parent.id);
-
-  //     tagings.push(await getDoc(tag.parent.id, tag.id));
-  //   });
-
-  // console.log(await consoleList(coll, doc));
-
-  // Object.entries(data).forEach((subData) => {
-  //   const [innerKey, innerValue] = subData;
-  //   console.log("inner", innerKey, innerValue);
-  //       Object.entries(subData.tags).forEach((tag) => {
-  //         console.log(tag, "tags");
-  //   });
-  // });
-
-  // loading = false;
+  await logData();
+  // console.log(projects);
+  
+  return projects;
 };
 
-let tagings = [];
-const socials = {};
-const dashboard = {};
-const contacts = {};
+

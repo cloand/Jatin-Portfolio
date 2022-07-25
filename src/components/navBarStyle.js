@@ -15,7 +15,7 @@ position:sticky;
 top:0;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center;
   max-width:1700px;
   margin:auto;
   background:${AppColors.background500};

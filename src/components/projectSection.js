@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import useGetCollection from "../customHooks/useGetCollection";
 import useGetDoc from "../customHooks/useGetData";
+import { projectData } from "../store/data";
 import ProjectsCard from "./Projects";
 import {
   Project,
@@ -11,14 +12,17 @@ import {
 } from "./projectSectionStyle";
 
 const ProjectSection = () => {
-  const [projects, projectsError, isProjectsLoading] = useGetCollection(
-    "projects"
-  );
+  const [projects,setProjects] = useState(null);
+ 
+  useEffect(async () => {
+     setProjects( await projectData());
+    
+  },[])
 
-  if (isProjectsLoading) {
+  if (!projects) {
     return <div>wait</div>;
   }
-
+  
   return (
     <Project>
       <ProjectInner>
@@ -35,8 +39,7 @@ const ProjectSection = () => {
                 icon={i.icon}
               />
             ))
-            .reverse()
-            .slice(0, 6)}
+            }
         </BottomSection>
       </ProjectInner>
     </Project>

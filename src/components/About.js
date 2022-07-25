@@ -30,7 +30,7 @@ const AboutComp = () => {
         <TopSection>About</TopSection>
         <BottomSection>
           <BottomLeft>
-            <MyImage src="#" />
+            <MyImage src={about.imageUrl} />
           </BottomLeft>
           <BottomRight>{about.description}</BottomRight>
         </BottomSection>

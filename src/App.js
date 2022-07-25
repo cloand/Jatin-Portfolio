@@ -29,7 +29,7 @@ import NavDataMobile from "./components/navDataMobile";
 import ContactSection from "./components/contactSection";
 import ProjectSection from "./components/projectSection";
 import Messages from "./store/messageData";
-import { projectData as projects } from "./store/data";
+import { projectData, projectData as projects } from "./store/data";
 export const myContext = React.createContext();
 export const navState = React.createContext();
 
@@ -88,8 +88,8 @@ const App = () => {
   };
 
   useEffect(async () => {
-    console.log(await projects());
-  });
+    console.log(await projectData());
+  },[]);
 
   useEffect(() => {
     if (homeRef.current) {
@@ -132,7 +132,7 @@ const App = () => {
 
   return (
     <>
-      {/* <Messages />
+      {/* <Messages /> */}
       <myContext.Provider value={{ clickChange }}>
         <NavBar
           ref={{ homeRef, aboutRef, projectRef, experienceRef, contactRef }}
@@ -164,7 +164,7 @@ const App = () => {
       </div>
       <div ref={contactRef}>
         <ContactSection />
-      </div> */}
+      </div>
     </>
   );
 };

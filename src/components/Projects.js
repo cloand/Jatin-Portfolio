@@ -13,16 +13,17 @@ import {
   Counter,
   TagsOuter,
 } from "./projectCardStyle";
-import ProjectTags from "./projectTags";
+
 import { projects } from "../store/data";
+import { SingleTag } from "./projectCardStyle";
 
 const ProjectsCard = ({ name, tags, icon }) => {
-  const count = tags.length - 2;
+  const count = Object.keys(tags).length - 2;
 
   return (
     <CardMain>
       {}
-      {/* <img
+      <img
         src="https://i.postimg.cc/26178hsf/albert-dera-ILip77-Sbm-OE-unsplash.jpg"
         width="30%"
         height="100%"
@@ -38,19 +39,19 @@ const ProjectsCard = ({ name, tags, icon }) => {
           </Titles>
           <TagsOuter>
             <TagNames>
-              {tagsData.map((i, index) => {
+              {tags.map((i, index) => {
+                if(index<2){
                 return (
-                  <div key={index}>
-                    <ProjectTags tag={i} />
-                  </div>
-                );
+                    <SingleTag color={i.color}>{i.label}</SingleTag>
+                    );
+                  }
               })}
             </TagNames>
             {count > 0 ? <Counter> +{count}</Counter> : null}
           </TagsOuter>
         </div>
         <Expand>Read More</Expand>
-      </RightProjectSection> */}
+      </RightProjectSection>
     </CardMain>
   );
 };

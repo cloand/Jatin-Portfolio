@@ -34,7 +34,7 @@ const NavBar = (props, ref) => {
 
   return (
     <NavStyle>
-      <Logo />
+      {/* <Logo /> */}
 
       <Hamburg>
         <RiveComponent
