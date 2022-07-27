@@ -4,6 +4,7 @@ import styledComponents from "styled-components";
 
 const ButtonStyle = styledComponents.button`
   position: relative;
+  font-size:${TextTheme.heading6.fontSize};
   text-decoration: none;
   z-index: 1;
   border-radius:10px;
@@ -12,6 +13,12 @@ const ButtonStyle = styledComponents.button`
   padding:.5em .7em;
   // min-height:3em;
   borer: 0;
+  @media(max-width:400px){
+    width:100px;
+    font-size:${TextTheme.body2.fontSize};
+     height:30px;
+     padding:.3em .6em;    
+    }
   &:hover {
     cursor: pointer;
 
@@ -55,7 +62,7 @@ function Button({
       onClick={onClick}
       style={{
         border: 0,
-        ...TextTheme.heading6,
+
         ..._buttonType,
         backgroundColor: color != null ? color : _buttonType.background,
         textAlign: "center",

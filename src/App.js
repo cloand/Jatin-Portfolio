@@ -89,13 +89,13 @@ const App = () => {
 
   useEffect(async () => {
     console.log(await projectData());
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (homeRef.current) {
       window.addEventListener("scroll", highlights);
     }
-    return window.removeEventListener("scroll", highlights);
+    return () => window.removeEventListener("scroll", highlights);
   });
 
   const { RiveComponent, rive } = useRive({

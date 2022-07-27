@@ -130,7 +130,7 @@ const ContactForm = () => {
             required
           />
           <ServiceLabels for="flutter">Flutter </ServiceLabels>
-
+          <br />
           <CheckInput
             type="radio"
             id="python"
@@ -140,6 +140,7 @@ const ContactForm = () => {
             required
           />
           <ServiceLabels for="python">Python</ServiceLabels>
+          <br />
 
           <CheckInput
             type="radio"
@@ -150,6 +151,7 @@ const ContactForm = () => {
             required
           />
           <ServiceLabels for="other">Other</ServiceLabels>
+          <br />
         </ServiceOutline>
       </Service>
       <InputOutline

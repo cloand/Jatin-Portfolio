@@ -8,6 +8,7 @@ export const Form = StyledComponents.form`
     display:grid;
     gap:2rem;
     grid-template-columns:repeat(2,1fr);
+   
 `;
 
 export const InputOutline = StyledComponents.div`
@@ -28,6 +29,9 @@ export const TextInput = StyledComponents.input`
     padding:.5em;
     border-radius: 8px;
     height: 48px;
+     @media(max-width:400px){
+        font-size:.7rem;
+    }
     `;
 
 export const MessageInput = StyledComponents.textarea`
@@ -40,9 +44,15 @@ export const MessageInput = StyledComponents.textarea`
     border-radius: 8px;
     min-height: 96px;
     resize:none;
+     @media(max-width:400px){
+     font-size:.7rem;   
+    }
 
     &::placeholder{
         font-family:${TextTheme.heading6.fontFamily};
+         @media(max-width:400px){
+        font-size:.7rem;
+    }
     }
 `;
 
@@ -56,12 +66,16 @@ export const ServiceHeading = StyledComponents.div`
 
 export const ServiceOutline = StyledComponents.div`
     padding:.5em 0;
+    @media(max-width:400px){
+        display:block;
+    }
 `;
 
 export const Labels = StyledComponents.label`
   display:block;
   padding-bottom:1em;
   font-family: ${TextTheme.subtitle1.fontFamily};
+
 `;
 
 export const ServiceLabels = StyledComponents.label`
@@ -70,6 +84,9 @@ export const ServiceLabels = StyledComponents.label`
 `;
 
 export const CheckInput = StyledComponents.input`
+    // @media(max-width:400px){
+    //     display:block;
+    // }
 `;
 
 export const Submit = StyledComponents.input`
@@ -83,6 +100,9 @@ export const Submit = StyledComponents.input`
     align:right;
     &:hover{
         cursor:pointer;
+    }
+     @media(max-width:800px){
+     font-size:${TextTheme.body1.fontSize};   
     }
 `;
 

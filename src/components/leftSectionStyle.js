@@ -18,17 +18,29 @@ const LeftSectionStyle = styledComponents.div`
     padding:4em 0 0 0;
    display:flex;
    margin:auto;
- height:100vh;
+ height:80vh;
+ border:2px solid red;
+  @media(max-width:400px){
+     padding:0; 
+   
+    }
+  
 `;
 
 const LeftSectionData = styledComponents.div`
     margin:auto;
     width:50%;
-  
+    border:2px solid green;
+   @media(max-width:400px){
+        width:100%;
+       
+    }
 `;
 const RightSectionStyle = styledComponents.div`
     width:50%;
- 
+  @media(max-width:400px){
+     display:none;   
+    }
 `;
 
 const LinksStyle = styledComponents.div`
@@ -85,7 +97,10 @@ letter-Spacing:${TextTheme.heading5.letterSpacing};
 text-align:${TextTheme.heading5.textAlign};
 opacity:0;
 animation:${singleDataAnimation} 2s ease forwards;
-
+ @media(max-width:400px){
+        
+     font-size:${TextTheme.body1.fontSize};
+    }
 
 `;
 
@@ -101,8 +116,10 @@ text-align:${TextTheme.display.textAlign};
 animation-name:${singleDataAnimation};
 opacity:0;
 animation:${singleDataAnimation} 2s ease .7s forwards;
+@media(max-width:400px){
+    font-size:${TextTheme.heading1.fontSize};
+   }
 `;
-
 const DesignationStyle = styledComponents.div`
 
     color:${AppColors.text300};
@@ -117,6 +134,11 @@ text-align:${TextTheme.body1.textAlign};
 animation-name:${singleDataAnimation};
 animation:${singleDataAnimation} 2s ease 1s forwards;
 opacity:0;
+@media(max-width:400px){
+     letter-Spacing:0.4em;
+        
+     font-size:${TextTheme.caption.fontSize};
+    }
 `;
 
 const BioText = styledComponents.div`
@@ -126,8 +148,8 @@ const BioText = styledComponents.div`
 `;
 
 const ButtonStyle = styledComponents.div`
-    
-    padding:7em 0;
+    // border:2px solid red;
+    padding-top:4em;
    
   width:100%;
    
@@ -136,6 +158,7 @@ const ButtonStyle = styledComponents.div`
 const ButtonOuter = styledComponents.div`
 
         display:flex;
+        justify-content:space-between;
        width:100%;
        padding:0;
       
@@ -143,7 +166,7 @@ const ButtonOuter = styledComponents.div`
 
 const ButtonInner = styledComponents.div`
      text-align:center;
-
+width:100%;
    
 `;
 
