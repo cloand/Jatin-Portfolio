@@ -40,11 +40,9 @@ const ProjectsCard = ({ name, tags, icon }) => {
           <TagsOuter>
             <TagNames>
               {tags.map((i, index) => {
-                if(index<2){
-                return (
-                    <SingleTag color={i.color}>{i.label}</SingleTag>
-                    );
-                  }
+                if (index < 2) {
+                  return <SingleTag color={i.color}>{i.label}</SingleTag>;
+                }
               })}
             </TagNames>
             {count > 0 ? <Counter> +{count}</Counter> : null}

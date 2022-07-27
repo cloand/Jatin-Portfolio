@@ -30,6 +30,7 @@ import ContactSection from "./components/contactSection";
 import ProjectSection from "./components/projectSection";
 import Messages from "./store/messageData";
 import { projectData, projectData as projects } from "./store/data";
+import { Routes, Route } from "react-router-dom";
 export const myContext = React.createContext();
 export const navState = React.createContext();
 
@@ -67,12 +68,14 @@ const App = () => {
   // }
 
   const scrollIntoView = (myRef) => {
-    const axis = myRef.getBoundingClientRect();
-    if (axis.top < window.innerHeight / 2 && axis.bottom > 0) {
-      return true;
-    }
+    if (myRef) {
+      const axis = myRef.getBoundingClientRect();
+      if (axis.top < window.innerHeight / 2 && axis.bottom > 0) {
+        return true;
+      }
 
-    return false;
+      return false;
+    }
   };
 
   const highlights = () => {
@@ -86,10 +89,6 @@ const App = () => {
       setActive(Strings.home);
     }
   };
-
-  useEffect(async () => {
-    console.log(await projectData());
-  }, []);
 
   useEffect(() => {
     if (homeRef.current) {

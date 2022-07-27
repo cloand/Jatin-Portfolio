@@ -10,6 +10,7 @@ padding:4.5em 0;
 `;
 
 export const ProjectInner = StyledComponents.div`
+margin-bottom:2em;
 
 `;
 

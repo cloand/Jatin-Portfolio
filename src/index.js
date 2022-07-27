@@ -2,11 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProjectPage from "./pages/projectPage";
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="projects" element={<ProjectPage />} />
+    </Routes>
+  </Router>,
   document.getElementById("root")
 );
 

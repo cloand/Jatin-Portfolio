@@ -19,7 +19,7 @@ const LeftSectionStyle = styledComponents.div`
    display:flex;
    margin:auto;
  height:80vh;
- border:2px solid red;
+//  border:2px solid red;
   @media(max-width:400px){
      padding:0; 
    
@@ -30,7 +30,7 @@ const LeftSectionStyle = styledComponents.div`
 const LeftSectionData = styledComponents.div`
     margin:auto;
     width:50%;
-    border:2px solid green;
+    // border:2px solid green;
    @media(max-width:400px){
         width:100%;
        
